@@ -1,14 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
-export const CartItem = ({ item, cart, onAdd, onRemove }) => {
+// cart prop se recibe pero no se usa localmente (lo gestiona el padre via onAdd/onRemove)
+export const CartItem = ({ item, onAdd, onRemove }) => {
   const product = item?.product || {};
   const _id = product._id || product.id || item?._id;
   const [currentUnit, setCurrentUnit] = useState(item?.unit || 1);
 
+  // Usamos ref para evitar el setState sincrónico en el primer render
+  // Solo sincronizamos cuando item.unit cambia DESPUÉS del montaje inicial
+  const isMounted = useRef(false);
   useEffect(() => {
-    if (item?.unit) {
+    if (!isMounted.current) {
+      isMounted.current = true;
+      return;
+    }
+    if (item?.unit !== undefined) {
       setCurrentUnit(item.unit);
     }
   }, [item]);
