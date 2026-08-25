@@ -1,0 +1,231 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&display=swap");
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+/* ==========================================================================
+   PORSCHE DESIGN SYSTEM (PDS) DESIGN TOKENS & CSS VARIABLES
+   Reference: https://designsystem.porsche.com/v4/stylesheets/css-variables/introduction/
+   ========================================================================== */
+
+:root {
+  /* PDS Theme Light Variables */
+  --pds-theme-primary: #010205;
+  --pds-theme-background-base: #ffffff;
+  --pds-theme-background-surface: #f2f2f2;
+  --pds-theme-background-card: #ffffff;
+  --pds-theme-contrast-high: #010205;
+  --pds-theme-contrast-medium: #53565a;
+  --pds-theme-contrast-low: #e3e4e6;
+  --pds-theme-border: rgba(1, 2, 5, 0.1);
+  --pds-theme-border-subtle: rgba(1, 2, 5, 0.06);
+
+  /* PDS Brand Color Tokens */
+  --pds-color-brand: #d5001c; /* Porsche Guards Red */
+  --pds-color-brand-hover: #b80018;
+  --pds-color-gold: #c5a059;
+  --pds-color-yellow: #f5bc18;
+  --pds-color-silver: #8e9297;
+
+  /* Frosted Glass Light */
+  --pds-nav-bg: rgba(255, 255, 255, 0.82);
+  --pds-nav-border: rgba(1, 2, 5, 0.08);
+
+  /* PDS Elevation & Shadows */
+  --pds-shadow-sm: 0 1px 3px rgba(1, 2, 5, 0.06);
+  --pds-shadow-md: 0 4px 16px rgba(1, 2, 5, 0.08);
+  --pds-shadow-lg: 0 12px 36px rgba(1, 2, 5, 0.12);
+}
+
+html.dark {
+  /* PDS Theme Dark Variables */
+  --pds-theme-primary: #ffffff;
+  --pds-theme-background-base: #0e0e11;
+  --pds-theme-background-surface: #141416;
+  --pds-theme-background-card: #18181c;
+  --pds-theme-contrast-high: #ffffff;
+  --pds-theme-contrast-medium: #96989c;
+  --pds-theme-contrast-low: #26282c;
+  --pds-theme-border: rgba(255, 255, 255, 0.12);
+  --pds-theme-border-subtle: rgba(255, 255, 255, 0.06);
+
+  /* Frosted Glass Dark */
+  --pds-nav-bg: rgba(14, 14, 17, 0.85);
+  --pds-nav-border: rgba(255, 255, 255, 0.1);
+
+  /* PDS Elevation & Shadows Dark */
+  --pds-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --pds-shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --pds-shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.7);
+}
+
+@theme {
+  --color-porsche-red: var(--pds-color-brand);
+  --color-porsche-red-hover: var(--pds-color-brand-hover);
+  --color-pds-base: var(--pds-theme-background-base);
+  --color-pds-surface: var(--pds-theme-background-surface);
+  --color-pds-card: var(--pds-theme-background-card);
+  --color-pds-high: var(--pds-theme-contrast-high);
+  --color-pds-medium: var(--pds-theme-contrast-medium);
+  --color-pds-low: var(--pds-theme-contrast-low);
+  --color-pds-border: var(--pds-theme-border);
+}
+
+body {
+  margin: 0;
+  background-color: var(--pds-theme-background-base);
+  color: var(--pds-theme-contrast-high);
+  font-family: "Inter", "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   PDS TYPOGRAPHY UTILITIES
+   ========================================================================== */
+
+.font-porsche {
+  font-family: "Outfit", "DM Sans", sans-serif;
+  letter-spacing: 0.08em;
+}
+
+.tracking-pds-headline {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.tracking-pds-subheadline {
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.tracking-pds-spec {
+  letter-spacing: 0.08em;
+}
+
+/* ==========================================================================
+   PDS BUTTON UTILITIES (Pill Buttons & Precision Borders)
+   ========================================================================== */
+
+.pds-button-primary {
+  background-color: var(--pds-theme-primary);
+  color: var(--pds-theme-background-base);
+  border-radius: 9999px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  padding: 0.875rem 1.75rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  box-shadow: var(--pds-shadow-sm);
+}
+
+.pds-button-primary:hover {
+  background-color: var(--pds-color-brand);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(213, 0, 28, 0.3);
+}
+
+.pds-button-secondary {
+  background-color: transparent;
+  color: var(--pds-theme-contrast-high);
+  border: 1.5px solid var(--pds-theme-border);
+  border-radius: 9999px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  padding: 0.875rem 1.75rem;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.pds-button-secondary:hover {
+  border-color: var(--pds-theme-contrast-high);
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+html.dark .pds-button-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.pds-button-brand {
+  background-color: var(--pds-color-brand);
+  color: #ffffff;
+  border-radius: 9999px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  padding: 0.875rem 1.75rem;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(213, 0, 28, 0.35);
+}
+
+.pds-button-brand:hover {
+  background-color: var(--pds-color-brand-hover);
+  box-shadow: 0 6px 20px rgba(213, 0, 28, 0.45);
+}
+
+/* ==========================================================================
+   FROSTED GLASS & CARD UTILITIES
+   ========================================================================== */
+
+.pds-frosted-nav {
+  background-color: var(--pds-nav-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--pds-nav-border);
+}
+
+.pds-card {
+  background-color: var(--pds-theme-background-card);
+  border: 1px solid var(--pds-theme-border);
+  box-shadow: var(--pds-shadow-sm);
+  transition: all 0.25s ease;
+}
+
+.pds-card:hover {
+  border-color: var(--pds-theme-contrast-medium);
+  box-shadow: var(--pds-shadow-md);
+}
+
+/* Custom PDS Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--pds-theme-contrast-low);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--pds-color-brand);
+}
+
+/* Performance Optimizations */
+img {
+  content-visibility: auto;
+}

@@ -1,0 +1,20 @@
+services:
+  # FRONTEND
+  frontend:
+    build: .
+    container_name: frontend_service
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:8000/
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    networks:
+      - microservices-net
+
+# Red compartida (creada por el backend)
+networks:
+  microservices-net:
+    name: microservices-net
+    external: true

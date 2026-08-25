@@ -1,0 +1,7 @@
+export * from "./Header";
+export * from "./Footer";
+export * from "./ProductCard";
+export * from "./Cart-comp";
+export * from "./Wishlist-comp";
+export * from "./Order-comp";
+export * from "./Address-comp";

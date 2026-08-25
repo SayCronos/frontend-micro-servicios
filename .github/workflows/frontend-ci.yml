@@ -1,0 +1,51 @@
+name: CI - Frontend React Vite
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test-and-build:
+    name: Frontend React + Vite (Tests & Build)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repositorio
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Preparar Variables de Entorno
+        run: cp .env.example .env
+
+      - name: Instalar Dependencias
+        run: npm install --legacy-peer-deps
+
+      - name: Ejecutar Linter
+        run: npm run lint --if-present
+
+      - name: Ejecutar Tests Unitarios & Componentes
+        run: npm test
+
+      - name: Compilar Bundle de Producción
+        run: npm run build
+
+  docker-build:
+    name: Validación Docker Image Build
+    runs-on: ubuntu-latest
+    needs: test-and-build
+    steps:
+      - name: Checkout Repositorio
+        uses: actions/checkout@v4
+
+      - name: Preparar Variables de Entorno
+        run: cp .env.example .env
+
+      - name: Construir Imagen Docker del Frontend
+        run: docker build -t frontend-service:ci .
