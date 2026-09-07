@@ -10,7 +10,7 @@ import {
   Phone,
   ShieldCheck,
   Sparkles,
-  Plus,
+  Plus, PlusCircle,
   CreditCard,
   Building2,
   Lock,
@@ -167,6 +167,14 @@ export const Profile = () => {
             </div>
 
             <div className="flex items-center gap-3">
+              <Link
+                to="/admin/create-product"
+                className="pds-button-brand text-xs !py-2.5 !px-5 flex items-center gap-2 shadow-md hover:scale-[1.02] transition-transform"
+              >
+                <PlusCircle size={15} />
+                <span>Crear Vehículo</span>
+              </Link>
+
               <Link to="/vehicles" className="pds-button-primary text-xs !py-2.5 !px-5">
                 <Car size={14} />
                 <span>Explorar Gama</span>
@@ -181,6 +189,42 @@ export const Profile = () => {
                 <span>Cerrar Sesión</span>
               </button>
             </div>
+          </div>
+        </div>
+
+        {/* Banner Administrativo Porsche - Acceso Directo */}
+        <div className="rounded-xl pds-card p-6 mb-8 border-2 border-[#d5001c]/40 bg-gradient-to-r from-[var(--pds-theme-background-card)] via-[#d5001c]/10 to-[var(--pds-theme-background-card)] shadow-lg">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-xl bg-[#d5001c] text-white flex items-center justify-center shadow-md shrink-0">
+                <Car size={24} />
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] uppercase font-bold tracking-pds-headline text-[#d5001c] bg-[#d5001c]/15 px-2.5 py-0.5 rounded-full">
+                    Panel Administrativo Porsche
+                  </span>
+                  <span className="text-[10px] text-emerald-500 font-bold uppercase tracking-wider flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    products_db activo
+                  </span>
+                </div>
+                <h3 className="font-porsche text-lg font-bold text-[var(--pds-theme-contrast-high)] mt-1">
+                  Gestión de Inventario & Alta de Vehículos
+                </h3>
+                <p className="text-xs text-[var(--pds-theme-contrast-medium)] mt-0.5">
+                  Publica nuevos superdeportivos, SUVs y berlinas en el catálogo oficial con persistencia en tiempo real.
+                </p>
+              </div>
+            </div>
+
+            <Link
+              to="/admin/create-product"
+              className="pds-button-brand text-xs !py-3 !px-6 flex items-center justify-center gap-2.5 shrink-0 shadow-md hover:scale-[1.02] transition-transform"
+            >
+              <PlusCircle size={16} />
+              <span>Añadir Nuevo Vehículo (/admin/create-product)</span>
+            </Link>
           </div>
         </div>
 

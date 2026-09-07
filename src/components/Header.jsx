@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { ShoppingBag, User, Sun, Moon, Menu, X, ChevronRight } from "lucide-react";
+import { ShoppingBag, User, Sun, Moon, Menu, X, ChevronRight, Plus } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
 
 export const Header = () => {
@@ -32,7 +32,8 @@ export const Header = () => {
     { name: "Modelos", path: "/vehicles" },
     { name: "Gama 2026", path: "/#gama" },
     { name: "Porsche Approved", path: "/#certificacion" },
-    { name: "Mi Garaje", path: "/login" },
+    { name: "Mi Garaje", path: token ? "/profile" : "/login" },
+    ...(token ? [{ name: "+ Crear Vehículo", path: "/admin/create-product" }] : []),
   ];
 
   return (
@@ -114,9 +115,20 @@ export const Header = () => {
               )}
             </Link>
 
+            {/* Admin Quick Button */}
+            {token && (
+              <Link
+                to="/admin/create-product"
+                className="hidden sm:inline-flex items-center gap-1.5 pds-button-brand text-xs !py-2.5 !px-4"
+              >
+                <Plus size={13} />
+                <span>Crear Vehículo</span>
+              </Link>
+            )}
+
             {/* Garaje / User Access Pill Button */}
             <Link
-              to="/login"
+              to={token ? "/profile" : "/login"}
               className="hidden sm:inline-flex items-center gap-1.5 pds-button-primary text-xs"
             >
               <User size={13} />

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes, Outlet, useLocation } from "react-router-dom";
 import { Home, Vehicles, ProductDetails, Login, Profile } from "./pages";
-import { Header, Footer } from "./components";
+import { Header, Footer, CreateProduct } from "./components";
 import { ThemeProvider } from "./context/ThemeContext";
 
 // Scroll to top on route change
@@ -35,6 +35,7 @@ function App() {
             <Route path="/details/:id" element={<ProductDetails />} />
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/admin/create-product" element={<CreateProduct />} />
             <Route path="*" element={<Home />} />
           </Route>
         </Routes>
