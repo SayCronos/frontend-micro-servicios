@@ -6,3 +6,4 @@ export * from "./Wishlist-comp";
 export * from "./Order-comp";
 export * from "./Address-comp";
 export * from "./CreateProduct";
+export * from "./Hero";
