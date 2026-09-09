@@ -3,17 +3,21 @@ services:
   frontend:
     build: .
     container_name: frontend_service
+    restart: on-failure
     ports:
-      - "5173:5173"
+      - "${FRONTEND_PORT:-5173}:5173"
+    env_file:
+      - path: ./.env
+        required: false
     environment:
-      - VITE_API_URL=http://localhost:8000/
+      - VITE_API_URL=${VITE_API_URL:-http://localhost:8000}
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
     networks:
       - microservices-net
 
-# Red compartida (creada por el backend)
+# Red compartida (creada automáticamente por el backend)
 networks:
   microservices-net:
     name: microservices-net
